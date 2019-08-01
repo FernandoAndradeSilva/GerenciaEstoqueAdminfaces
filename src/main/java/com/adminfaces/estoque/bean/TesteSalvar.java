@@ -18,20 +18,17 @@ public class TesteSalvar implements Serializable {
 
 
     @Inject
-    UnidadeDao unidadeDao0;
+    UnidadeDao unidadeDao;
 
 
 
     @Transacional
     public void salvar() {
 
+        Unidade unidade = unidadeDao.findById(4l);
 
-        Unidade unit = new Unidade("ICN" , "RIO" , "RJ");
+        unidadeDao.update(unidade);
 
-        this.unidadeDao0.save(unit);
-
-
-        //this.unityDao.salvar(unit);
 
     }
 
