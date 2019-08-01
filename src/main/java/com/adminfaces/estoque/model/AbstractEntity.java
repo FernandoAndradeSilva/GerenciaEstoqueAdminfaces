@@ -8,18 +8,21 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @MappedSuperclass
-public class AbstractEntity<ID extends Serializable> implements Serializable {
+public class AbstractEntity implements Serializable {
+
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private ID id;
+    private long id;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AbstractEntity<?> that = (AbstractEntity<?>) o;
-        return id.equals(that.id);
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override
@@ -32,13 +35,11 @@ public class AbstractEntity<ID extends Serializable> implements Serializable {
         return "id=" + id;
     }
 
-    public ID getId() {
-        return id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AbstractEntity that = (AbstractEntity) o;
+        return id == that.id;
     }
-
-    public void setId(ID id) {
-        this.id = id;
-    }
-
-
 }
