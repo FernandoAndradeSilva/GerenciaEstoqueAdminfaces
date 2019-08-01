@@ -1,5 +1,6 @@
 package com.adminfaces.estoque.bean;
 
+import com.adminfaces.estoque.dao.UndImplTeste;
 import com.adminfaces.estoque.dao.UnidadeDao;
 import com.adminfaces.estoque.model.Unidade;
 import com.adminfaces.estoque.util.Transacional;
@@ -20,14 +21,19 @@ public class TesteSalvar implements Serializable {
     @Inject
     UnidadeDao unidadeDao;
 
-
+    @Inject
+    UndImplTeste unDao;
 
     @Transacional
     public void salvar() {
 
-        Unidade unidade = unidadeDao.findById(4l);
+        //Unidade unidade = unidadeDao.findById(4l);
 
-        unidadeDao.update(unidade);
+        Unidade unidade = new Unidade("AA" , "BB" , "CC");
+        unDao.save(unidade);
+        //unidadeDao.update(unidade);
+
+
 
 
     }
