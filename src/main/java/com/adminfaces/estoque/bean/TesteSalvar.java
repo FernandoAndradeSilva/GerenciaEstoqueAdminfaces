@@ -7,9 +7,12 @@ import com.adminfaces.estoque.service.UnidadeService;
 import com.adminfaces.estoque.service.UsuarioService;
 import com.adminfaces.estoque.util.Transacional;
 
+
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import java.io.Serializable;
 
 @Named
@@ -25,14 +28,21 @@ public class TesteSalvar implements Serializable {
     @Inject
     UsuarioService usuarioService;
 
-    @Transacional
+    @Transacional()
     public void salvar() {
-
+        try {
         Unidade unidade = new Unidade("AA" , "BB" , "CC");
         unidadeService.salvar(unidade);
 
         Usuario usuario = new Usuario("Bla" ,"fernando");
         usuarioService.salvar(usuario);
+
+        } catch (ConstraintViolationException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause());
+        }
+
+
     }
 
     public void encontrar() {
