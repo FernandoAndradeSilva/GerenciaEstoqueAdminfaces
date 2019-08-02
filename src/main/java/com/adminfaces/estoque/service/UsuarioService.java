@@ -8,9 +8,10 @@ import java.io.Serializable;
 
 public class UsuarioService implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Inject
     private UsuarioDao usuarioDao;
-
 
 
     public void salvar(Usuario usuario) {

@@ -1,15 +1,22 @@
 package com.adminfaces.estoque.model;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity(name = "USUARIO")
 public class Usuario extends AbstractEntity {
 
-
+    @NotBlank(message = "O campo 'Nome' não pode ser vazio")
+    @Size(min = 0 , max = 20 , message = "o campo 'Nome' precisa ter entre 0 e 20 caracteres")
     private String nome;
-    @Email(message = "EMAIL errado")
+
+
+    @NotBlank(message = "O campo 'Email' não pode ser vazio")
+    @Email(message = "Digite um email válido")
     private String email;
 
     public Usuario(String nome, String email) {
