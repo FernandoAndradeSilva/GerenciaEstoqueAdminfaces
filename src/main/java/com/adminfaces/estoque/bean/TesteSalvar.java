@@ -2,6 +2,9 @@ package com.adminfaces.estoque.bean;
 
 import com.adminfaces.estoque.dao.UnidadeDao;
 import com.adminfaces.estoque.model.Unidade;
+import com.adminfaces.estoque.model.Usuario;
+import com.adminfaces.estoque.service.UnidadeService;
+import com.adminfaces.estoque.service.UsuarioService;
 import com.adminfaces.estoque.util.Transacional;
 
 import javax.faces.view.ViewScoped;
@@ -13,25 +16,31 @@ import java.io.Serializable;
 @ViewScoped
 public class TesteSalvar implements Serializable {
 
+
     private static final long serialVersionUID = 1L;
 
-
+    @Inject
+    UnidadeService unidadeService;
 
     @Inject
-    UnidadeDao unidadeDao;
+    UsuarioService usuarioService;
 
     @Transacional
     public void salvar() {
 
+        Unidade unidade = new Unidade("AA" , "BB" , "CC");
+        unidadeService.salvar(unidade);
+
+        Usuario usuario = new Usuario("Bla" ,"fernando");
+        usuarioService.salvar(usuario);
+    }
+
+    public void encontrar() {
 
         Unidade unidade = new Unidade("AA" , "BB" , "CC");
+        unidadeService.salvar(unidade);
 
-        unidadeDao.save(unidade);
-
-
-        Unidade und = unidadeDao.findById(1l);
-
-
+        System.out.println(unidadeService.encontraPorId(2l));
 
     }
 
